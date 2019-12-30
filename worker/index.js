@@ -1,3 +1,5 @@
+console.log("Worker Node starting...\n");
+
 const keys = require('./keys');
 const redis = require('redis');
 
@@ -15,7 +17,6 @@ function fib(index) {
 
 sub.on('message', (channel, message) => {
   redisClient.hset('values', message, fib(parseInt(message)));
-  console.log("Received message:\n" + message)
 });
 
 sub.subscribe('insert');
