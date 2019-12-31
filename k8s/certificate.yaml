@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+    name: k8s-multi-com-tls
+spec:
+    secretName: k8s-multi-com
+    issuerRef:
+        name: letsencrypt-prod
+        kind: ClusterIssuer
+    commonName: easy-donate.com
+    dnsNames:
+        - easy-donate.com
+        - www.easy-donate.com
+    acme:
+        config:
+            - http01:
+                ingressClass: nginx
+              domains:
+                - easy-donate.com
+                - www.easy-donate.com
+                
